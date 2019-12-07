@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Car_rental.Models.Booking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountDetail.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarLocation.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExtraFeature.FeatureName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookedFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookedTill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountDetail.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CarLocation.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExtraFeature.FeatureName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookedFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookedTill)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookingId })
+        </td>
+    </tr>
+}
+
+</table>
