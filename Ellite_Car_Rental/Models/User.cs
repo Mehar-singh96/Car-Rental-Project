@@ -2,6 +2,7 @@ namespace Ellite_Car_Rental.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -19,9 +20,11 @@ namespace Ellite_Car_Rental.Models
         public int ID { get; set; }
 
         [StringLength(255)]
+        [DisplayName("First Name")]
         public string F_Name { get; set; }
 
         [StringLength(255)]
+        [DisplayName("Last Name")]
         public string L_Name { get; set; }
 
         [StringLength(255)]
@@ -37,6 +40,7 @@ namespace Ellite_Car_Rental.Models
         public string Role { get; set; }
 
         [StringLength(255)]
+        [DisplayName("Street Address")]
         public string Street_Address { get; set; }
 
         [StringLength(255)]
@@ -49,6 +53,7 @@ namespace Ellite_Car_Rental.Models
         public string Country { get; set; }
 
         [StringLength(255)]
+        [DisplayName("Postal Code")]
         public string Postal_Code { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
