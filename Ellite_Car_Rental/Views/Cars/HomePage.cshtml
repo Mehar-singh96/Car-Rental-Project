@@ -6,14 +6,30 @@
 }
 
 
-<label>From Date</label>
-<input id="fromDate" type="date" />
-
-<label>From Date</label>
-<input id="tillDate" type="date" />
 
 
-<button class="button" id="find" onclick="find();">Search</button>
+
+
+<body>
+    <div class ="alert" style="display:none" id="msg1">
+        <strong>Please enter correct dates</strong>
+    </div>
+
+    <div id="home_page" style="text-align:center">
+
+        <label>From Date</label>
+        <input id="fromDate" type="date" />
+
+        <label>From Date</label>
+        <input id="tillDate" type="date" />
+
+
+        <button class="button" id="find" onclick="find();">Search</button>
+    </div>
+
+
+
+</body>
 
 
 
@@ -30,7 +46,8 @@
                 tillDate: tillDate
             }
         }).done(function () {
-            location.reload(true);
+            
+
         });
 
     }

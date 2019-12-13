@@ -30,6 +30,14 @@ namespace Ellite_Car_Rental.Controllers
             return View(await cars.ToListAsync());
         }
 
+
+        // GET: lookCars
+        public async Task<ActionResult> lookCars()
+        {
+            var cars = db.Cars.Include(c => c.Car_Type);
+            return View(await cars.ToListAsync());
+        }
+
         // GET: Cars/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -130,19 +138,55 @@ namespace Ellite_Car_Rental.Controllers
         }
 
 
+
+
         [HttpPost, ActionName("searchCars")]
         public async Task<ActionResult> searchCars(DateTime fromDate, DateTime tillDate)
         {
+            List<HomePage> hps = new List<HomePage>();
+            HomePage hp = new HomePage();
+
+            var carsWithDate = db.Bookings.AsEnumerable().Where(x => x.Date_Rent >= fromDate && x.Date_Rent <= tillDate);
+            var listCar = carsWithDate.Select(x => x.Car);
+            var dictionary = new Dictionary<int, int>();
+
+            var cars = db.Cars.AsEnumerable();
+            var bookings = db.Bookings.AsEnumerable();
+
+            foreach(var i in cars)
+            {
+                int sub_qty = 0;
+                
+                foreach (var j in bookings)
+                {
+                    if (i.ID == j.Car_Id)
+                    {
+                        sub_qty++;
+                    }
+                }
+                dictionary[i.ID] = (int)i.Qty - sub_qty;
+            }
+
+            foreach(var car in cars)
+            {
+                HomePage hpg = new HomePage();
+                int car_fqty;
+                dictionary.TryGetValue(car.ID, out car_fqty);
+                hpg.Qty = car_fqty;
+                hpg.Url_Img = car.Url_Img;
+                hpg.Car_Type = car.Car_Type;
+                hpg.Title = car.Title;
+                hpg.Desc = car.Desc;
+                hps.Add(hpg);
+            }
+
+
             if (fromDate == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-
-
-
-
-            return View();
+            return View("~/Views/Cars/lookCars.cshtml", hps);
         }
 
         protected override void Dispose(bool disposing)
