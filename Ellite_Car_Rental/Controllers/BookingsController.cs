@@ -44,7 +44,10 @@ namespace Ellite_Car_Rental.Controllers
             ViewBag.Trans_Id = new SelectList(db.Orders, "Trans_Id", "Trans_Id");
             return View();
         }
-
+        public ActionResult Payment()
+        {
+            return View();
+        }
         // POST: Bookings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
