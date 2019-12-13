@@ -10,48 +10,49 @@
 
 
 
-<body>
-    <div class ="alert" style="display:none" id="msg1">
-        <strong>Please enter correct dates</strong>
-    </div>
+    <body>
+        <div class="alert" style="display:none" id="msg1">
+            <strong>Please enter correct dates</strong>
+        </div>
 
-    <div id="home_page" style="text-align:center">
+        <div id="home_page" style="text-align:center">
 
-        <label>From Date</label>
-        <input id="fromDate" type="date" />
+            <label>From Date</label>
+            <input id="fromDate" type="date" />
 
-        <label>From Date</label>
-        <input id="tillDate" type="date" />
-
-
-        <button class="button" id="find" onclick="find();">Search</button>
-    </div>
+            <label>From Date</label>
+            <input id="tillDate" type="date" />
 
 
+            <button class="button" id="find" onclick="find();">Search</button>
+        </div>
 
-</body>
+        <div id="control_user" style="overflow-y:auto; overflow-x:hidden; "></div>
+
+        </body>
 
 
+        <script>
+            function find() {
+                var fromDate = document.getElementById("fromDate").value;
+                var tillDate = document.getElementById("tillDate").value;
 
-<script>
-    function find() {
-        var fromDate = document.getElementById("fromDate").value;
-        var tillDate = document.getElementById("tillDate").value;
+                $.ajax({
+                    type: "POST",
+                    url: '/Cars/searchCars',
+                    data: {
+                        fromDate: fromDate,
+                        tillDate: tillDate
+                    }
+                }).done(function () {
+                    $('#home_page').hide();
+                    $('#control_user').empty();
+                    $('#control_user').html(data);
 
-        $.ajax({
-            type: "POST",
-            url: '/Cars/searchCars',
-            data: {
-                fromDate: fromDate,
-                tillDate: tillDate
+                });
+
             }
-        }).done(function () {
-            
-
-        });
-
-    }
-</script>
+        </script>
 
 
 
