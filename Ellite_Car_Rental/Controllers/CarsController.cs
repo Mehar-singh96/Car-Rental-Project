@@ -22,6 +22,14 @@ namespace Ellite_Car_Rental.Controllers
             return View(await cars.ToListAsync());
         }
 
+
+        // GET: HomePage
+        public async Task<ActionResult> HomePage()
+        {
+            var cars = db.Cars.Include(c => c.Car_Type);
+            return View(await cars.ToListAsync());
+        }
+
         // GET: Cars/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -119,6 +127,22 @@ namespace Ellite_Car_Rental.Controllers
             db.Cars.Remove(car);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+
+        [HttpPost, ActionName("searchCars")]
+        public async Task<ActionResult> searchCars(DateTime fromDate, DateTime tillDate)
+        {
+            if (fromDate == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+
+
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)

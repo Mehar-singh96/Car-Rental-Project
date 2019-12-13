@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Ellite_Car_Rental.Models.Car>
+
+@{
+    ViewBag.Title = "HomePage";
+
+}
+
+
+<label>From Date</label>
+<input id="fromDate" type="date" />
+
+<label>From Date</label>
+<input id="tillDate" type="date" />
+
+
+<button class="button" id="find" onclick="find();">Search</button>
+
+
+
+<script>
+    function find() {
+        var fromDate = document.getElementById("fromDate").value;
+        var tillDate = document.getElementById("tillDate").value;
+
+        $.ajax({
+            type: "POST",
+            url: '/Cars/searchCars',
+            data: {
+                fromDate: fromDate,
+                tillDate: tillDate
+            }
+        }).done(function () {
+            location.reload(true);
+        });
+
+    }
+</script>
+
+
+
