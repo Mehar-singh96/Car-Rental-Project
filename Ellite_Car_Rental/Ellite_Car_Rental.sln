@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ellite_Car_Rental", "Ellite_Car_Rental.csproj", "{071D0944-DA60-4317-9B10-E5B79DC78F8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{071D0944-DA60-4317-9B10-E5B79DC78F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{071D0944-DA60-4317-9B10-E5B79DC78F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{071D0944-DA60-4317-9B10-E5B79DC78F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{071D0944-DA60-4317-9B10-E5B79DC78F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5FEFBC4-5E58-4AF7-B86A-B7B024AE9C88}
+	EndGlobalSection
+EndGlobal
