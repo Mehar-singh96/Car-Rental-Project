@@ -7,11 +7,11 @@ namespace Ellite_Car_Rental.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("User")]
-    public partial class User
+   
+    public partial class SignUp
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public SignUp()
         {
             Carts = new HashSet<Cart>();
             Orders = new HashSet<Order>();
@@ -19,14 +19,17 @@ namespace Ellite_Car_Rental.Models
 
         public int ID { get; set; }
 
+        [Required(ErrorMessage ="First Name is required")]
         [StringLength(255)]
         [DisplayName("First Name")]
         public string F_Name { get; set; }
 
+        
         [StringLength(255)]
         [DisplayName("Last Name")]
         public string L_Name { get; set; }
 
+        [Required(ErrorMessage = "Email is required")]
         [StringLength(255)]
         public string Email { get; set; }
 
@@ -36,6 +39,11 @@ namespace Ellite_Car_Rental.Models
 
         [StringLength(255)]
         public string Password { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        [Compare(nameof(Password), ErrorMessage ="Password and Confirm Password doesn't match")]
+        public string ConfirmPassword { get; set; }
 
         [StringLength(255)]
         public string Role { get; set; }
