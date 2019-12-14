@@ -103,6 +103,7 @@ namespace Ellite_Car_Rental.Controllers
                 this.Session["Desc"] = cartobject.Car.Desc;
                 this.Session["Title"] = cartobject.Car.Title;
                 this.Session["Rent"] = cartobject.Car.Rent;
+                this.Session["Car_ID"] = cartobject.Car.ID;
             }
 
             

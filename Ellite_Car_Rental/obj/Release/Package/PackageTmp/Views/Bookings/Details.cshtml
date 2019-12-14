@@ -1,0 +1,42 @@
+﻿@model Ellite_Car_Rental.Models.Booking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Trans_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Trans_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date_Rent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date_Rent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

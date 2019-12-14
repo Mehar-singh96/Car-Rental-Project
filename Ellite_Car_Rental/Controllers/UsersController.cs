@@ -45,6 +45,24 @@ namespace Ellite_Car_Rental.Controllers
             return View("~/Users/SignIn.cshtml");
         }
 
+        public ActionResult Home()
+        {
+            return View("Home");
+        }
+
+        public ActionResult signin_start()
+        {
+            return View("SignIn");
+        }
+
+        public ActionResult signup_start()
+        {
+            return View("Create");
+        }
+
+
+
+
         // GET: Users/Details/5
         public async Task<ActionResult> Details(int? id)
         {

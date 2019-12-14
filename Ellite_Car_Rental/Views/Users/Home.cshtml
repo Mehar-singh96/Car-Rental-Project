@@ -1,0 +1,13 @@
+﻿@model Ellite_Car_Rental.Models.Login
+
+@{
+    ViewBag.Title = "Home";
+}
+
+
+
+
+<h1>WELCOME TO ELLITE CAR RENTALS</h1>
+
+<button onclick="location.href='@Url.Action("signin_start", "Users")'">SIGN IN</button>
+<button onclick="location.href='@Url.Action("signup_start", "Users")'">SIGN UP</button>

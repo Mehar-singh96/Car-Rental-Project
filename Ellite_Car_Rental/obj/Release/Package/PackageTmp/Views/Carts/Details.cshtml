@@ -1,0 +1,50 @@
+﻿@model Ellite_Car_Rental.Models.Cart
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cart</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.F_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.F_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.From_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.From_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Till_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Till_Date)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

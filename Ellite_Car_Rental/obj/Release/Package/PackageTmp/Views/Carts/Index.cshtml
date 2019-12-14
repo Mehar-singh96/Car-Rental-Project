@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Ellite_Car_Rental.Models.Cart>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+@{
+    int count = 1;
+    decimal Amount = 0;
+    decimal Hst = 0;
+}
+<table class="table">
+    <!--
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.Car.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car.Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.From_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Till_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Car.Rent)
+        </th>
+    </tr>
+        -->
+
+   
+   
+
+    <tr>
+
+        <td>
+            <img src="@Session["Image"].ToString()" style="height: 150px" />
+            <br />
+            <br />
+
+            @Html.DisplayFor(modelItem => Session["Desc"])
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Session["Title"])
+        </td>
+
+        
+        <td>
+            $@Html.DisplayFor(modelItem => Session["Desc"])
+        </td>
+        <td>
+            <a href="@Url.Action("Delete", "Carts", new { id = Session["ID"]})">
+                <!-- <img src="~/Content/delete.png" style="height: 30px" /> -->
+                CANCEL
+            </a>
+        </td>
+       
+    </tr>
+   
+
+
+</table>
+
+@Html.ActionLink("PROCEED", "proceed");

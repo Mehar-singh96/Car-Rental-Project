@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CarModel-Web.config Connection String" description="CarModel Connection String used in web.config by the application to access the database." defaultValue="data source=dev.cs.smu.ca;initial catalog=Team5;persist security info=True;user id=team5;password=l0catem3;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\mehar\\OneDrive\\Documents\\Proj_backup\\proj\\TeamProject\\Ellite_Car_Rental\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CarModel']/@connectionString" />
+  </parameter>
+</parameters>

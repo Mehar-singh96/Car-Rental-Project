@@ -31,6 +31,54 @@ namespace Ellite_Car_Rental.Controllers
             return View("Payment");
         }
 
+
+        public async Task<ActionResult> pay_confirm()
+        {
+            
+
+
+            Status st = new Status();
+            st.Status_Pay = "confirmed";
+            db.Status.Add(st);
+            db.SaveChanges();
+
+            Order order = new Order();
+            order.Usr_Id = (int)Session["userID"];
+            order.Pay_Id = st.ID;
+            order.Total_Price = Convert.ToDecimal(Session["Rent"]);
+            db.Orders.Add(order);
+
+
+           
+
+            DateTime rentStart = Convert.ToDateTime((DateTime)Session["fromDate"]);
+            DateTime rentEnd = Convert.ToDateTime((DateTime)Session["tillDate"]);
+            for (DateTime date = rentStart; date <= rentEnd; date = date.AddDays(1))
+            {
+                try
+                {
+                    Booking bk = new Booking();
+                    bk.Trans_Id = order.Trans_Id;
+                    bk.Car_Id = (int)Session["car_ID"];
+                    bk.Date_Rent = date;
+                    bk.Order = null;
+
+                    db.Bookings.Add(bk);
+                    db.SaveChanges();
+                    //await db.SaveChangesAsync();
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
+
+            return View("summary");
+        }
+
+
+
+
         // GET: Bookings/Details/5
         public async Task<ActionResult> Details(int? id)
         {

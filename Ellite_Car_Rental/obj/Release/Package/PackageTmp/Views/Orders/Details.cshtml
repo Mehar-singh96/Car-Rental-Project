@@ -1,0 +1,42 @@
+﻿@model Ellite_Car_Rental.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Status_Pay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Status_Pay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.F_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.F_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total_Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total_Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Trans_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

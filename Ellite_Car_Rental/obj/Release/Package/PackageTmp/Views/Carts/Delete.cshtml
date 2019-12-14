@@ -1,0 +1,56 @@
+﻿@model Ellite_Car_Rental.Models.Cart
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cart</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.F_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.F_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.From_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.From_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Till_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Till_Date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
