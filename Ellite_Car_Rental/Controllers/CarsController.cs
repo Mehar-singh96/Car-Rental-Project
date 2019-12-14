@@ -252,17 +252,21 @@ namespace Ellite_Car_Rental.Controllers
 
             foreach(var car in cars)
             {
-                HomePage hpg = new HomePage();
                 int car_fqty;
                 dictionary.TryGetValue(car.ID, out car_fqty);
-                hpg.Qty = car_fqty;
-                hpg.Url_Img = car.Url_Img;
-                hpg.Car_Type = car.Car_Type;
-                hpg.Title = car.Title;
-                hpg.Desc = car.Desc;
-                hpg.Rent = car.Rent;
-                hpg.ID = car.ID;
-                hps.Add(hpg);
+                if (car_fqty > 0)
+                {
+                    HomePage hpg = new HomePage();
+
+                    hpg.Qty = car_fqty;
+                    hpg.Url_Img = car.Url_Img;
+                    hpg.Car_Type = car.Car_Type;
+                    hpg.Title = car.Title;
+                    hpg.Desc = car.Desc;
+                    hpg.Rent = car.Rent;
+                    hpg.ID = car.ID;
+                    hps.Add(hpg);
+                }
             }
 
 
