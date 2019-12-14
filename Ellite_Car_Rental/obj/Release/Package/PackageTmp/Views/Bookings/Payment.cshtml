@@ -29,7 +29,7 @@
                 <form>
                     <div class="form-group owner">
                         <label for="owner">Card Holder Name</label>
-                        <input type="text" class="form-control" id="owner">
+                        <input type="text" class="form-control" id="name">
                     </div>
                     <div class="form-group CVV">
                         <label for="cvv">CVV</label>
@@ -37,24 +37,27 @@
                     </div>
                     <div class="form-group" id="card-number-field">
                         <label for="cardNumber">Card Number</label>
-                        <input type="text" class="form-control" id="cardNumber">
+                        <input type="text" class="form-control" id="card_number">
                     </div>
                     <div class="form-group" id="expiration-date">
                         <label>Expiration Date</label>
-                        <select>
-                            <option value="01">January</option>
-                            <option value="02">February </option>
-                            <option value="03">March</option>
-                            <option value="04">April</option>
-                            <option value="05">May</option>
-                            <option value="06">June</option>
-                            <option value="07">July</option>
-                            <option value="08">August</option>
-                            <option value="09">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
+                        <div id="expiry_month">
+                            <select>
+                                <option value="01">January</option>
+                                <option value="02">February </option>
+                                <option value="03">March</option>
+                                <option value="04">April</option>
+                                <option value="05">May</option>
+                                <option value="06">June</option>
+                                <option value="07">July</option>
+                                <option value="08">August</option>
+                                <option value="09">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                        <div id="expiry_year">
                         <select>
                             <option value="13"> 2013</option>
                             <option value="14"> 2014</option>
@@ -76,10 +79,11 @@
                             <option value="30"> 2030</option>
                             <option value="31"> 2031</option>
                         </select>
+                            </div>
                     </div>
                     <div class="form-group" id="credit_cards">
                         <img src="/Content/visa.jpg" id="visa">
-                        <img src="/Content/mastercard.jpg" id="mastercard">
+                        <img src="/Content/mastercard.jpg" id="master">
                         <img src="/Content/amex.jpg" id="amex">
                     </div>
                     <div class="form-group" id="pay-now">
@@ -91,3 +95,131 @@
     </div>
 </body>
 </html>
+
+
+
+<script>
+     function ccValidate(ccn) {
+        var regex_visa = new RegExp("^(4)");
+        var regex_master = new RegExp("^(51|52|53|54|55)");
+        var regex_amex = new RegExp("^(34|37)");
+        var cardType = "";
+
+        if (regex_visa.test(ccn)) {
+            cardType = "Visa";
+            $("#master").addClass("transparent");
+            $("#amex").addClass("transparent");
+            $("#visa").removeClass("transparent");
+        }
+        else if (regex_master.test(ccn)) {
+            cardType = "Master";
+            $("#master").removeClass("transparent");
+            $("#amex").addClass("transparent");
+            $("#visa").addClass("transparent");
+        }
+        else if (regex_amex.test(ccn)) {
+            cardType = "American Express";
+            $("#master").addClass("transparent");
+            $("#amex").removeClass("transparent");
+            $("#visa").addClass("transparent");
+        }
+        else {
+            $("#master").addClass("transparent");
+            $("#amex").addClass("transparent");
+            $("#visa").addClass("transparent");
+        }
+        return cardType;
+    }
+
+    $(function () {
+        $("#card_number").change(function () {
+            ccValidate($(this).val());
+        });
+        $("#card_number").keyup(function () {
+            ccValidate($(this).val());
+        });
+
+        document.getElementById('card_number').oninput = function() {
+            this.value = cc_format(this.value)
+        }
+        $("#card_number").keypress(function (e) {
+            if ((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0)) {
+                return false;
+            }
+            return true;
+        });
+    });
+
+    
+    function cc_format(value) {
+      var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
+      var matches = v.match(/\d{4,16}/g);
+      var match = matches && matches[0] || ''
+      var parts = []
+      for (i=0, len=match.length; i<len; i+=4) {
+        parts.push(match.substring(i, i+4))
+      }
+      if (parts.length) {
+        return parts.join(' ')
+      } else {
+        return value
+      }
+    }
+
+    function confirmPayment() {
+        var name = $("#name").val();
+        var ccNum = $("#card_number").val();
+        var month = $("#expiry_month").val();
+        var yr = $("#expiry_year").val();
+        var cvv = $("#cvv").val();
+
+        var cardType = ccValidate(ccNum);
+        ccNum = parseInt(ccNum);
+        debugger;
+        var nameRegex = new RegExp("([a-zA-Z\d]+[\w\d]*|)[a-zA-Z]+[\w\d.]*");
+        var invalidData = false;
+
+        if (name == "" || ccNum == "" || isNaN(ccNum) || month == "" || yr == "" || cvv == "") {
+            invalidData = true;
+            alert("empty value");
+        }
+        else if (!nameRegex.test(name)) {
+            invalidData = true;
+            alert("Enter valid cardholder name");
+        }
+        else if (month.length != 2 || parseInt(month) < 1 || parseInt(month) > 12) {
+            invalidData = true;
+            alert("Enter valid month between 01 to 12");
+        }
+        else if (yr.length != 4 || parseInt(yr) < 2016 || parseInt(yr) > 2031) {
+            invalidData = true;
+            alert("Enter valid year between 2016 to 2031");
+        }
+        /*else if (cardType == "" || ((cardType == "Visa" || cardType == "Master") && ccNum.length != 16) || (cardType == "American Express" && ccNum.length != 15)) {
+            invalidData = true;
+            alert("Enter valid card number");
+        }*/
+
+        /*
+
+        if (!invalidData) {
+            $.ajax({
+                type: "POST",
+                url: '/Orders/CreateOrder',
+                data: {
+                    cardNum: $("#card_number").val().replace(/\s/g,'')
+                }
+            }).done(function (dt) {
+                console.log(dt);
+                $("#payModule").hide();
+                $('#orderConfirmation').empty();
+                $('#orderConfirmation').html(dt);
+            });
+        }
+        */
+    }
+
+
+
+
+</script>

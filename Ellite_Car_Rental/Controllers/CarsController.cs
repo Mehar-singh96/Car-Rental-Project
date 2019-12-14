@@ -62,6 +62,13 @@ namespace Ellite_Car_Rental.Controllers
         }
 
 
+        public ActionResult from_cartDelete()
+        {
+
+            return RedirectToAction("lookCars");
+        }
+        
+
         // GET: HomePage
         public async Task<ActionResult> HomePage()
         {
@@ -74,7 +81,7 @@ namespace Ellite_Car_Rental.Controllers
         public async Task<ActionResult> lookCars()
         {
             var cars = db.Cars.Include(c => c.Car_Type);
-            return View(await cars.ToListAsync());
+            return View("HomePage");
         }
 
 

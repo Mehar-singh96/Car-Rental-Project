@@ -4,7 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<h2 class="display-3 font-weight-bold" style=" text-align: center">PLEASE CONFIRM THE BOOKING</h2>
+<br />
+<br />
+<br />
 
 
 @{
@@ -35,8 +39,8 @@
     </tr>
         -->
 
-   
-   
+
+
 
     <tr>
 
@@ -45,28 +49,43 @@
             <br />
             <br />
 
+
+        </td>
+
+        <td>
+        </td>
+
+
+        <td style="font-size: 20px">
             @Html.DisplayFor(modelItem => Session["Desc"])
         </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => Session["Title"])
+        <td  style=" font-size:25px">
+            $@Html.DisplayFor(modelItem => Session["Rent"])
         </td>
 
-        
-        <td>
-            $@Html.DisplayFor(modelItem => Session["Desc"])
-        </td>
-        <td>
+        <td class="btn" style=" font-size:25px">
             <a href="@Url.Action("Delete", "Carts", new { id = Session["ID"]})">
                 <!-- <img src="~/Content/delete.png" style="height: 30px" /> -->
                 CANCEL
             </a>
         </td>
-       
+
     </tr>
-   
+
 
 
 </table>
 
-@Html.ActionLink("PROCEED", "proceed");
+<div   style="width: 500px;  font-size:20px">
+    @Html.DisplayFor(modelItem => Session["Title"])
+    </div>
+
+
+    <div id="pro" class="btn btn-lg" style="width: 1000px;  font-size:20px">
+        @Html.ActionLink("PROCEED", "proceed")
+    </div>
+
+    <style>
+    </style>
+

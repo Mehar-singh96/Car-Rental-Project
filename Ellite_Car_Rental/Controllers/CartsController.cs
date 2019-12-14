@@ -115,7 +115,7 @@ namespace Ellite_Car_Rental.Controllers
             return View(cart);
         }
 
-        // GET: Carts/Delete/5
+        // GET: Carts/Delete/
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -127,7 +127,8 @@ namespace Ellite_Car_Rental.Controllers
             {
                 return HttpNotFound();
             }
-            return View(cart);
+            db.Carts.Remove(cart);
+            return RedirectToAction("from_cartDelete", "cars");
         }
 
         // POST: Carts/Delete/5

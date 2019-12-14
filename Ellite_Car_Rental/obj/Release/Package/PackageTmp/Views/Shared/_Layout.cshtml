@@ -9,6 +9,7 @@
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </head>
 <body>
+    @*
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -17,14 +18,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Ellite", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+             @*   @Html.ActionLink("Ellite", "Cars", "HomePage", new { area = "" }, new { @class = "navbar-brand" }) 
             </div>
+            <div class="bg-image"></div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                 </ul>
             </div>
         </div>
     </div>
+    *@
 
     <div class="container body-content">
         @RenderBody()
@@ -38,3 +41,17 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+<style>
+    .background-image {
+        background-image:url(/Content/Rental_car.jpg);
+        background-repeat: no-repeat;
+        background-size : cover;
+       
+    }
+    .bg-image{
+         filter: blur(8px);
+         -webkit-filter: blur(8px);
+    }
+</style>
