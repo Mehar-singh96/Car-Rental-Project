@@ -189,6 +189,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\userCart.cs" />
     <Compile Include="Models\HomePage.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\CarModel.cs" />
@@ -217,6 +218,8 @@
     <Content Include="Views\Cars\HomePage.cshtml" />
     <Content Include="Views\Cars\lookCars.cshtml" />
     <Content Include="Views\Users\SignIn.cshtml" />
+    <Content Include="Views\Carts\Display.cshtml" />
+    <Content Include="Views\Carts\usercart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

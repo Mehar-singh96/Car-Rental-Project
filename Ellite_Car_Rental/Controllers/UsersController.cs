@@ -21,6 +21,30 @@ namespace Ellite_Car_Rental.Controllers
             return View(await db.Users.ToListAsync());
         }
 
+
+        // GET: signin
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SignInAfter()
+        {
+            string email = Request["email"].ToString();
+            string pass = Request["pass"].ToString();
+            var user = db.Users.Where(users => users.Email.Equals(email));
+
+            foreach (var users in user)
+            {
+                string password = users.Password;
+                if (password.Equals(pass))
+                {
+                    Session["UserID"] = users.ID;
+                    return RedirectToAction("fromSigninAfter", "Cars");
+                }
+            }
+
+            ViewBag.error = "Your credentials are wrong";
+            return View("~/Users/SignIn.cshtml");
+        }
+
         // GET: Users/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -54,10 +78,11 @@ namespace Ellite_Car_Rental.Controllers
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
                 Session["userID"] = user.ID;
-                return RedirectToAction("Index");
-            }
 
-            return View(user);
+                
+            }
+            return this.RedirectToAction("redirecthome","Cars");
+           // return View(user);
         }
         public ActionResult SignIn()
         {

@@ -15,7 +15,7 @@
 <table class="table">
     <!--
     <tr>
-        
+
 
         <th>
             @Html.DisplayNameFor(model => model.Car.Title)
@@ -35,46 +35,36 @@
     </tr>
         -->
 
-    @foreach (var item in Model)
-    {
-<tr>
    
-    <td>
-        <img src="@item.Car.Url_Img" style="height: 150px" />
-        <br />
-        <br />
+   
 
-        @Html.DisplayFor(modelItem => item.Car.Desc)
-    </td>
-   
-    <td>
-        @Html.DisplayFor(modelItem => item.Car.Title)
-    </td>
-   
-    <td>
-        <b>FROM: </b>@Html.DisplayFor(modelItem => item.From_Date)
-    </td>
-    <td>
-        <b>TILL: </b>@Html.DisplayFor(modelItem => item.Till_Date)
-    </td>
-    <td>
-        $@Html.DisplayFor(modelItem => item.Car.Rent)
-    </td>
-    <td>
-        <a href="@Url.Action("Delete", "Carts", new { id = item.ID})">
-           <!-- <img src="~/Content/delete.png" style="height: 30px" /> -->
-            CANCEL
-        </a>
-    </td>
-    <!--
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-    </td>
-        -->
-</tr>
-        count++;
-    }
+    <tr>
+
+        <td>
+            <img src="@Session["Image"].ToString()" style="height: 150px" />
+            <br />
+            <br />
+
+            @Html.DisplayFor(modelItem => Session["Desc"])
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => Session["Title"])
+        </td>
+
+        
+        <td>
+            $@Html.DisplayFor(modelItem => Session["Desc"])
+        </td>
+        <td>
+            <a href="@Url.Action("Delete", "Carts", new { id = Session["ID"]})">
+                <!-- <img src="~/Content/delete.png" style="height: 30px" /> -->
+                CANCEL
+            </a>
+        </td>
+       
+    </tr>
+    count++;
+
 
 </table>

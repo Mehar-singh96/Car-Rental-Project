@@ -18,6 +18,7 @@ namespace Ellite_Car_Rental.Controllers
         // GET: Carts
         public async Task<ActionResult> Index()
         {
+           //List<Cart> v = (List<Cart>)Session["cart"];
             var carts = db.Carts.Include(c => c.Car).Include(c => c.User);
             return View(await carts.ToListAsync());
         }

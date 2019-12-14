@@ -55,6 +55,12 @@ namespace Ellite_Car_Rental.Controllers
 
         }
 
+        public ActionResult fromSignInAfter()
+        {
+
+            return View("HomePage");
+        }
+
 
         // GET: HomePage
         public async Task<ActionResult> HomePage()
@@ -83,6 +89,24 @@ namespace Ellite_Car_Rental.Controllers
             cr.Till_Date = (DateTime)Session["tillDate"];
             cr.User_Id = (int)Session["userID"];
             db.Carts.Add(cr);
+            db.SaveChanges();
+
+            var car_item = db.Carts.Where(x => x.User_Id == cr.User_Id);
+
+            List<Cart> list = car_item.ToList();
+
+            foreach(Cart cart in list)
+            {
+                Cart cartobject = cart;
+                this.Session["ID"] = cartobject.ID;
+                this.Session["Image"] = cartobject.Car.Url_Img;
+                this.Session["Desc"] = cartobject.Car.Desc;
+                this.Session["Title"] = cartobject.Car.Title;
+                this.Session["Rent"] = cartobject.Car.Rent;
+            }
+
+            
+
             return this.RedirectToAction("Index", "Carts");
         }
 
@@ -241,7 +265,10 @@ namespace Ellite_Car_Rental.Controllers
 
             return View("~/Views/Cars/lookCars.cshtml", hps);
         }
-
+        public ActionResult redirecthome()
+        {
+            return View("HomePage");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
