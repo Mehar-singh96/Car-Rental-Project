@@ -1,11 +1,63 @@
 ﻿@model IEnumerable<Ellite_Car_Rental.Models.Car>
 
-@{ 
+@{
     ViewBag.Title = "HomePage";
 }
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <!DOCTYPE html>
+<script>
+
+    function msg_3() {
+          var startDate = document.getElementById("fromDate").value;
+        var todaysDate = new Date();
+        var errorMsg = document.getElementById("msg3");
+        if ((Date.parse(startDate) < todaysDate)) {
+            errorMsg.style.display = "block";
+            $('#msg3').delay(2000).fadeOut('slow');
+            document.getElementById("fromDate").value = "";
+        }
+    }
+    /*
+    $("#fromDate").change(function () {
+        var startDate = document.getElementById("fromDate").value;
+        var todaysDate = new Date();
+        var errorMsg = document.getElementById("msg3");
+        if ((Date.parse(startDate) < todaysDate)) {
+            errorMsg.style.display = "block";
+            $('#msg3').delay(2000).fadeOut('slow');
+            document.getElementById("fromDate").value = "";
+        }
+    });
+    */
+
+    function msg_2() {
+
+        var startDate = document.getElementById("fromDate").value;
+        var endDate = document.getElementById("tillDate").value;
+        var errorMsg = document.getElementById("msg2");
+        if ((Date.parse(endDate) <= Date.parse(startDate))) {
+            errorMsg.style.display = "block";
+            $('#msg2').delay(2000).fadeOut('slow');
+            document.getElementById("tillDate").value = "";
+        }
+    }
+    /*
+        $("#tillDate").change(function () {
+            var startDate = document.getElementById("fromDate").value;
+            var endDate = document.getElementById("tillDate").value;
+            var errorMsg = document.getElementById("msg2");
+            if ((Date.parse(endDate) <= Date.parse(startDate))) {
+                errorMsg.style.display = "block";
+                $('#msg2').delay(2000).fadeOut('slow');
+                document.getElementById("tillDate").value = "";
+            }
+        });
+        */
+
+
+</script>
+
 <html lang="en" dir="ltr">
 <head>
     <title>Elite Car Rental</title>
@@ -13,71 +65,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="mask-icon" color="#0075bc" href="/assets/safari-pinned-tab.svg" />
     <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico" />
-    </head>
-@*
-    <style>
-        .centered {
-            position: fixed;
-            top: 50%;
-            left: 20%;
-            margin-top: 50px;
-            margin-left: 100px;
-        }
+</head>
 
-        body {
-           @*background-image: url("/Content/image1.jpg"); 
-            background-size: contain, cover;
-        }
-    </style>
-*@
-    <script>
-        function find() {
-            var fromDate = document.getElementById("fromDate").value;
-            var tillDate = document.getElementById("tillDate").value;
+<script>
+    function find() {
+        var fromDate = document.getElementById("fromDate").value;
+        var tillDate = document.getElementById("tillDate").value;
 
-            $.ajax({
-                type: "POST",
-                url: '/Cars/searchCars',
-                data: {
-                    fromDate: fromDate,
-                    tillDate: tillDate
-                }
-            }).done(function (data) {
-                $('#home_page').hide();
-                $('#control_user').empty();
-                $('#control_user').html(data);
+        $.ajax({
+            type: "POST",
+            url: '/Cars/searchCars',
+            data: {
+                fromDate: fromDate,
+                tillDate: tillDate
+            }
+        }).done(function (data) {
+            $('#home_page').hide();
+            $('#control_user').empty();
+            $('#control_user').html(data);
 
-            });
+        });
 
-        }
-    </script>
+    }
+</script>
 
-    <body>
-        <div class="alert" style="display:none " id="msg1">
-            <strong>Please enter correct dates</strong>
-        </div>
-
-        <div id="home_page" style="text-align:center" class="centered form-group" >
-
-            <label ><font size=" +3 ">From  &nbsp; </font></label>
-            <input id="fromDate" class="input-lg" type="date" />
-
-            <br />
-            <br />
+<body>
 
 
-            <label  ><font size=" +3 ">Till  &nbsp;  </font></label>
-            <input id="tillDate" class="input-lg" type="date" />
 
-            <br />
-            <br />
-            <button type="button" width =" 50%" class="btn btn-success btn-lg" id="find" onclick="find();">Search</button>
-        </div>
 
-        <div id="control_user" style="overflow-y:auto; overflow-x:hidden; "></div>
+    <div class="alert alert-danger" style="display:none " id="msg1">
+        <strong>Please enter correct dates</strong>
+    </div>
 
-    </body>
-    </html>
+    <div class="alert alert-danger" style="text-align: center; display: none" id="msg2">
+        <strong> Till date should be greater than the From date</strong>
+    </div>
+
+    <div class="alert alert-danger" style="text-align: center; display:none" id="msg3">
+        <strong> From date should be after today's date</strong>
+    </div>
+
+    <div class="display-1">
+        <strong>Please Choose The Booking Dates</strong>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div id="home_page" style="text-align:center" class="centered form-group">
+
+        <label><font size=" +3 ">From  &nbsp; </font></label>
+        <input id="fromDate" class="input-lg" type="date" onchange="msg_3();"/>
+
+        <br />
+        <br />
+
+
+        <label><font size=" +3 ">Till  &nbsp;  </font></label>
+        <input id="tillDate" class="input-lg" type="date" onchange="msg_2();" />
+
+        <br />
+        <br />
+        <button type="button" width=" 50%" class="btn btn-success btn-lg" id="find" onclick="find();">Search</button>
+    </div>
+
+    <div id="control_user" style="overflow-y:auto; overflow-x:hidden; "></div>
+
+</body>
+</html>
+
+
+
+
+
 
 
 

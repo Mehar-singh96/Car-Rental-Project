@@ -1,15 +1,22 @@
 ﻿<!DOCTYPE html>
+<style>
+
+    .home {
+    margin-left: 478%;
+    font-size: xx-large;
+    }
+</style>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+  
 </head>
 <body>
-    @*
+    
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,7 +25,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-             @*   @Html.ActionLink("Ellite", "Cars", "HomePage", new { area = "" }, new { @class = "navbar-brand" }) 
+                <div style="margin-left: 478%;  font-size: xx-large">
+                @Html.ActionLink("Home", "HomePage", "Cars", new { area = "" }, new { @class = "navbar-brand home" })
+                 </div>
             </div>
             <div class="bg-image"></div>
             <div class="navbar-collapse collapse">
@@ -27,7 +36,7 @@
             </div>
         </div>
     </div>
-    *@
+    
 
     <div class="container body-content">
         @RenderBody()

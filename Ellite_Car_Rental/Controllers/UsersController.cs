@@ -92,6 +92,7 @@ namespace Ellite_Car_Rental.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "ID,F_Name,L_Name,Email,User_name,Password,Role,Street_Address,City,Province,Country,Postal_Code")] User user)
         {
+            user.Country = "canada";
             if (ModelState.IsValid)
             {
                 db.Users.Add(user);
