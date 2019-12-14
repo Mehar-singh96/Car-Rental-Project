@@ -229,7 +229,7 @@ namespace Ellite_Car_Rental.Controllers
             List<HomePage> hps = new List<HomePage>();
             HomePage hp = new HomePage();
 
-            var carsWithDate = db.Bookings.AsEnumerable().Where(x => x.Date_Rent >= fromDate && x.Date_Rent <= tillDate);
+            var carsWithDate = db.Bookings.AsEnumerable().Where((x => x.Date_Rent >= fromDate && x.Date_Rent <= tillDate));
             var listCar = carsWithDate.Select(x => x.Car);
             var dictionary = new Dictionary<int, int>();
 

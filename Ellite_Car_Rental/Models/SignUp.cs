@@ -33,14 +33,16 @@ namespace Ellite_Car_Rental.Models
         [StringLength(255)]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "User Name is required")]
         [StringLength(255)]
         [DisplayName("User Name")]
         public string User_name { get; set; }
 
+        [Required(ErrorMessage = "Password is required")]
         [StringLength(255)]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please confirm your password")]
         [StringLength(255)]
         [Compare(nameof(Password), ErrorMessage ="Password and Confirm Password doesn't match")]
         public string ConfirmPassword { get; set; }
@@ -63,6 +65,7 @@ namespace Ellite_Car_Rental.Models
 
         [StringLength(255)]
         [DisplayName("Postal Code")]
+        [RegularExpression(@"^[0-9]{5}$|^[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]$", ErrorMessage = "PostalCode can be either US or CANADA")]
         public string Postal_Code { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -53,14 +53,14 @@ namespace Ellite_Car_Rental.Controllers
 
             DateTime rentStart = Convert.ToDateTime((DateTime)Session["fromDate"]);
             DateTime rentEnd = Convert.ToDateTime((DateTime)Session["tillDate"]);
-            for (DateTime date = rentStart; date <= rentEnd; date = date.AddDays(1))
+           // for (DateTime date = rentStart; date <= rentEnd; date = date.AddDays(1))
             {
                 try
                 {
                     Booking bk = new Booking();
                     bk.Trans_Id = order.Trans_Id;
                     bk.Car_Id = (int)Session["car_ID"];
-                    bk.Date_Rent = date;
+                    bk.Date_Rent = rentStart;
                     bk.Order = null;
 
                     db.Bookings.Add(bk);
