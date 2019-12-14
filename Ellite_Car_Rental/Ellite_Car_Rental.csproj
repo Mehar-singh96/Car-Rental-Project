@@ -220,6 +220,7 @@
     <Content Include="Views\Users\SignIn.cshtml" />
     <Content Include="Views\Carts\Display.cshtml" />
     <Content Include="Views\Carts\usercart.cshtml" />
+    <Content Include="Views\Bookings\summary.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

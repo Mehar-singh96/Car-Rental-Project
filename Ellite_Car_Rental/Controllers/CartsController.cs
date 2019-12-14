@@ -23,6 +23,17 @@ namespace Ellite_Car_Rental.Controllers
             return View(await carts.ToListAsync());
         }
 
+
+
+        public async Task<ActionResult> proceed()
+        {
+
+            return RedirectToAction("from_proceed", "Bookings");
+        }
+
+
+
+
         // GET: Carts/Details/5
         public async Task<ActionResult> Details(int? id)
         {
