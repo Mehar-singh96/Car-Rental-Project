@@ -1,58 +1,83 @@
 ﻿@model IEnumerable<Ellite_Car_Rental.Models.Car>
 
-@{
+@{ 
     ViewBag.Title = "HomePage";
-
 }
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Elite Car Rental</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="mask-icon" color="#0075bc" href="/assets/safari-pinned-tab.svg" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <style>
+        .centered {
+            position: fixed;
+            top: 50%;
+            left: 20%;
+            margin-top: 50px;
+            margin-left: 100px;
+        }
 
+        body {
+           @*background-image: url("/Content/image1.jpg"); *@
+            background-size: contain, cover;
+        }
+    </style>
+    <script>
+        function find() {
+            var fromDate = document.getElementById("fromDate").value;
+            var tillDate = document.getElementById("tillDate").value;
 
+            $.ajax({
+                type: "POST",
+                url: '/Cars/searchCars',
+                data: {
+                    fromDate: fromDate,
+                    tillDate: tillDate
+                }
+            }).done(function (data) {
+                $('#home_page').hide();
+                $('#control_user').empty();
+                $('#control_user').html(data);
 
+            });
 
+        }
+    </script>
 
     <body>
-        <div class="alert" style="display:none" id="msg1">
+        <div class="alert" style="display:none " id="msg1">
             <strong>Please enter correct dates</strong>
         </div>
 
-        <div id="home_page" style="text-align:center">
+        <div id="home_page" style="text-align:center" class="centered form-group" >
 
-            <label>From Date</label>
-            <input id="fromDate" type="date" />
+            <label ><font size=" +3 ">From  &nbsp; </font></label>
+            <input id="fromDate" class="input-lg" type="date" />
 
-            <label>From Date</label>
-            <input id="tillDate" type="date" />
+            <br />
+            <br />
 
 
-            <button class="button" id="find" onclick="find();">Search</button>
+            <label  ><font size=" +3 ">Till  &nbsp;  </font></label>
+            <input id="tillDate" class="input-lg" type="date" />
+
+            <br />
+            <br />
+            <button type="button" width =" 50%" class="btn btn-success btn-lg" id="find" onclick="find();">Search</button>
         </div>
 
         <div id="control_user" style="overflow-y:auto; overflow-x:hidden; "></div>
 
-        </body>
+    </body>
+    </html>
 
 
-        <script>
-            function find() {
-                var fromDate = document.getElementById("fromDate").value;
-                var tillDate = document.getElementById("tillDate").value;
 
-                $.ajax({
-                    type: "POST",
-                    url: '/Cars/searchCars',
-                    data: {
-                        fromDate: fromDate,
-                        tillDate: tillDate
-                    }
-                }).done(function () {
-                    $('#home_page').hide();
-                    $('#control_user').empty();
-                    $('#control_user').html(data);
-
-                });
-
-            }
-        </script>
 
 
 

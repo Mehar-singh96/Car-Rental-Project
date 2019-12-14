@@ -22,6 +22,39 @@ namespace Ellite_Car_Rental.Controllers
             return View(await cars.ToListAsync());
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // GET: Cars
+        public async Task<ActionResult> afterSign()
+        {
+            return View("HomePage");
+
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // GET: Cars
+        public  ActionResult afterSignIn([Bind(Include ="email,pass")] Car dsf)
+        {
+            string email = Request["email"].ToString();
+            string pass = Request["pass"].ToString();
+
+            var user=db.Users.Where(users=> users.Email.Equals(email) );
+
+            foreach(var users in user)
+            {
+                string password = users.Password;
+                if (password.Equals(pass))
+                    return View("HomePage");
+            }
+
+            ViewBag.error = "Your credentials are wrong";
+            return View("~/Users/SignIn.cshtml");
+
+        }
+
 
         // GET: HomePage
         public async Task<ActionResult> HomePage()
@@ -37,6 +70,22 @@ namespace Ellite_Car_Rental.Controllers
             var cars = db.Cars.Include(c => c.Car_Type);
             return View(await cars.ToListAsync());
         }
+
+
+
+        // GET: Reserve
+        public async Task<ActionResult> Reserve(int id)
+        {
+            //Session["id"] = id;
+            Cart cr = new Cart();
+            cr.Car_Id = id;
+            cr.From_Date =(DateTime) Session["fromDate"];
+            cr.Till_Date = (DateTime)Session["tillDate"];
+            cr.User_Id = (int)Session["userID"];
+            db.Carts.Add(cr);
+            return this.RedirectToAction("Index", "Carts");
+        }
+
 
         // GET: Cars/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -143,6 +192,8 @@ namespace Ellite_Car_Rental.Controllers
         [HttpPost, ActionName("searchCars")]
         public async Task<ActionResult> searchCars(DateTime fromDate, DateTime tillDate)
         {
+            Session["fromDate"] = fromDate;
+            Session["tillDate"] = tillDate;
             List<HomePage> hps = new List<HomePage>();
             HomePage hp = new HomePage();
 
@@ -177,6 +228,8 @@ namespace Ellite_Car_Rental.Controllers
                 hpg.Car_Type = car.Car_Type;
                 hpg.Title = car.Title;
                 hpg.Desc = car.Desc;
+                hpg.Rent = car.Rent;
+                hpg.ID = car.ID;
                 hps.Add(hpg);
             }
 

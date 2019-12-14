@@ -53,12 +53,16 @@ namespace Ellite_Car_Rental.Controllers
             {
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
+                Session["userID"] = user.ID;
                 return RedirectToAction("Index");
             }
 
             return View(user);
         }
-
+        public ActionResult SignIn()
+        {
+            return View("SignIn");
+        }
         // GET: Users/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {

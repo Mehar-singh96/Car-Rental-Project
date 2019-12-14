@@ -4,15 +4,55 @@
     ViewBag.Title = "lookCars";
 }
 
-<h2></h2>
 
-@foreach(var m in Model)
-{
-    <h4>Title: @m.Desc  - @m.Car_Type</h4>
-    <h4>Image: @m.Url_Img</h4>
-    <h4>Desc: @m.Desc</h4>
-    <h4>Price: $@m.Rent</h4>
-    <h4>Quantity: @m.Qty</h4>
 
-}
+
+<h2>Choose Your Car</h2>
+
+
+<div class="w3-container w3-text-grey" id="result_search">
+   
+    <table style="table-layout: fixed">
+
+        @foreach (var m in Model)
+        {
+        <tr>
+
+            <th>
+               
+                    <img src="@m.Url_Img" style="position: relative; width:200px; height:200px ">
+                
+                <span class="tab"></span>
+            <h4> @m.Title   ( @m.Car_Type.Type)</h4>
+                
+            </th>
+            
+            
+            <th>
+                <h4>    @m.Desc     </h4></th>
+            <th style="overflow: hidden">
+                <h4>Price: $ @m.Rent</h4></th>
+            
+            <th>@Html.ActionLink("Reserve", "Reserve", new { id = m.ID,  })</th>
+        </tr>
+
+
+        }
+
+    </table>
+
+
+
+
+       
+
+
+
+    </div>
+
+
+
+</div>
+
+
 

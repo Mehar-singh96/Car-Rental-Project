@@ -114,6 +114,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\delete.png" />
+    <Content Include="Content\image1.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -194,6 +195,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Car_Type.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\SignUp.cs" />
     <Compile Include="Models\User.cs" />
@@ -214,6 +216,7 @@
     <Content Include="Views\Bookings\Payment.cshtml" />
     <Content Include="Views\Cars\HomePage.cshtml" />
     <Content Include="Views\Cars\lookCars.cshtml" />
+    <Content Include="Views\Users\SignIn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
