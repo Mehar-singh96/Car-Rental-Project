@@ -53,31 +53,80 @@
     </script>
 
     <body>
-        <div class="alert" style="display:none " id="msg1">
+
+
+
+
+        <div class="alert alert-danger" style="display:none " id="msg1">
             <strong>Please enter correct dates</strong>
         </div>
 
-        <div id="home_page" style="text-align:center" class="centered form-group" >
+        <div class="alert alert-danger" style="text-align: center" display:none" id="msg2">
+            <strong> Till date should be greater than the From date</strong>
+        </div>
 
-            <label ><font size=" +3 ">From  &nbsp; </font></label>
+        <div class="alert alert-danger" style="text-align: center" display:none" id="msg3">
+            <strong> From date should be after today's date</strong>
+        </div>
+
+        <div class="display-1">
+            <strong>Please Choose The Booking Dates</strong>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div id="home_page" style="text-align:center" class="centered form-group">
+
+            <label><font size=" +3 ">From  &nbsp; </font></label>
             <input id="fromDate" class="input-lg" type="date" />
 
             <br />
             <br />
 
 
-            <label  ><font size=" +3 ">Till  &nbsp;  </font></label>
+            <label><font size=" +3 ">Till  &nbsp;  </font></label>
             <input id="tillDate" class="input-lg" type="date" />
 
             <br />
             <br />
-            <button type="button" width =" 50%" class="btn btn-success btn-lg" id="find" onclick="find();">Search</button>
+            <button type="button" width=" 50%" class="btn btn-success btn-lg" id="find" onclick="find();">Search</button>
         </div>
 
         <div id="control_user" style="overflow-y:auto; overflow-x:hidden; "></div>
 
     </body>
     </html>
+
+
+
+
+
+<script>
+
+    $("#fromDate").change(function () {
+        var startDate = document.getElementById("fromDate").value;
+        var todaysDate = new Date();
+        var errorMsg = document.getElementById("msg3");
+        if ((Date.parse(startDate) < todaysDate)) {
+            errorMsg.style.display = "block";
+            $('#msg3').delay(2000).fadeOut('slow');
+            document.getElementById("fromDate").value = "";
+        }
+
+    $("#tillDate").change(function () {
+        var startDate = document.getElementById("fromDate").value;
+        var endDate = document.getElementById("tillDate").value;
+        var errorMsg = document.getElementById("msg2");
+        if ((Date.parse(endDate) <= Date.parse(startDate))) {
+            errorMsg.style.display = "block";  
+            $('#msg2').delay(2000).fadeOut('slow');
+            document.getElementById("tillDate").value = "";
+        }
+    });
+
+    
+
+</script>
 
 
 

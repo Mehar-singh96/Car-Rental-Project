@@ -45,6 +45,7 @@ namespace Ellite_Car_Rental.Models
         public string Street_Address { get; set; }
 
         [StringLength(255)]
+        [RegularExpression(@"^([a-zA-Z \.\&\'\-]+)$", ErrorMessage = "Special characters and digits are not allowed ")]
         public string City { get; set; }
 
         [StringLength(255)]
