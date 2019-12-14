@@ -115,6 +115,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\delete.png" />
     <Content Include="Content\image1.jpg" />
+    <Content Include="Content\Rental_car.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

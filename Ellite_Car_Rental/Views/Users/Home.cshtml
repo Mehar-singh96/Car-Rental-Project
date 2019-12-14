@@ -4,10 +4,33 @@
     ViewBag.Title = "Home";
 }
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
 
 
+<h1 class="display-1">WELCOME TO ELLITE CAR RENTALS</h1>
+<br />
+<br />
+<br />
+<h2>Please Login to Continue</h2>
 
-<h1>WELCOME TO ELLITE CAR RENTALS</h1>
 
-<button onclick="location.href='@Url.Action("signin_start", "Users")'">SIGN IN</button>
-<button onclick="location.href='@Url.Action("signup_start", "Users")'">SIGN UP</button>
+<style>
+    #things {
+       text-align: center;
+       padding-top: 50px;
+      
+    }
+    h2{
+         text-align: center;
+    }
+
+    
+</style>
+
+
+<div id="things">
+    <button onclick="location.href='@Url.Action("signin_start", "Users")'" class="btn btn-success btn-lg">SIGN IN</button>
+    <br />
+    <br />
+    <button onclick="location.href='@Url.Action("signup_start", "Users")'" class="btn btn-success btn-lg">SIGN UP</button>
+</div>

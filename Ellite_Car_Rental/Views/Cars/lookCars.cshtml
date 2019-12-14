@@ -4,15 +4,15 @@
     ViewBag.Title = "lookCars";
 }
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
 
-
-<h2>Choose Your Car</h2>
+<h2 class="display-1">Choose Your Car</h2>
 
 
 <div class="w3-container w3-text-grey" id="result_search">
    
-    <table style="table-layout: fixed">
+    <table style="table-layout: fixed" class="table">
 
         @foreach (var m in Model)
         {
