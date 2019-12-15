@@ -51,8 +51,11 @@ namespace Ellite_Car_Rental.Models
         [StringLength(255)]
         public string Province { get; set; }
 
+
         [StringLength(255)]
         public string Country { get; set; }
+
+
 
         [StringLength(255)]
         [DisplayName("Postal Code")]

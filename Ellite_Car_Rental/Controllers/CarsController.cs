@@ -61,6 +61,11 @@ namespace Ellite_Car_Rental.Controllers
             return View("HomePage");
         }
 
+        public ActionResult HomePage()
+        {
+            return View("HomePage");
+        }
+
 
         public ActionResult from_cartDelete()
         {
@@ -68,6 +73,7 @@ namespace Ellite_Car_Rental.Controllers
             return RedirectToAction("lookCars");
         }
         
+        /*
 
         // GET: HomePage
         public async Task<ActionResult> HomePage()
@@ -75,6 +81,7 @@ namespace Ellite_Car_Rental.Controllers
             var cars = db.Cars.Include(c => c.Car_Type);
             return View(await cars.ToListAsync());
         }
+        */
 
 
         // GET: lookCars
@@ -87,7 +94,7 @@ namespace Ellite_Car_Rental.Controllers
 
 
         // GET: Reserve
-        public async Task<ActionResult> Reserve(int id)
+        public ActionResult Reserve(int id)
         {
             //Session["id"] = id;
             Cart cr = new Cart();
@@ -96,21 +103,31 @@ namespace Ellite_Car_Rental.Controllers
             cr.Till_Date = (DateTime)Session["tillDate"];
             cr.User_Id = (int)Session["userID"];
             db.Carts.Add(cr);
-            db.SaveChanges();
+           db.SaveChanges();
 
-            var car_item = db.Carts.Where(x => x.User_Id == cr.User_Id);
+            var car_item = db.Carts.Where(x => x.User_Id == cr.User_Id );
 
             List<Cart> list = car_item.ToList();
 
+            int flag = 0;
             foreach(Cart cart in list)
             {
+                flag = 1;
                 Cart cartobject = cart;
                 this.Session["ID"] = cartobject.ID;
+                if(cartobject.Car == null)
+                {
+
+                     var car_ = db.Cars.Where(x => x.ID == cartobject.Car_Id);
+                    List<Car> list_ = car_.ToList();
+                    cartobject.Car = list_[0];
+                }
                 this.Session["Image"] = cartobject.Car.Url_Img;
                 this.Session["Desc"] = cartobject.Car.Desc;
                 this.Session["Title"] = cartobject.Car.Title;
                 this.Session["Rent"] = cartobject.Car.Rent;
                 this.Session["Car_ID"] = cartobject.Car.ID;
+                if (flag == 1) break;
             }
 
             
@@ -277,6 +294,8 @@ namespace Ellite_Car_Rental.Controllers
 
             return View("~/Views/Cars/lookCars.cshtml", hps);
         }
+
+        [HttpGet, ActionName("redirecthome")]
         public ActionResult redirecthome()
         {
             return View("HomePage");

@@ -96,7 +96,7 @@ namespace Ellite_Car_Rental.Controllers
             ViewBag.User_Id = new SelectList(db.Users, "ID", "F_Name", cart.User_Id);
             return View(cart);
         }
-
+        
         // POST: Carts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
