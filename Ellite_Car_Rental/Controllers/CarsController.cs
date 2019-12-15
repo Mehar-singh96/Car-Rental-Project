@@ -173,7 +173,7 @@ namespace Ellite_Car_Rental.Controllers
             }
 
             ViewBag.TypeId = new SelectList(db.Car_Type, "ID", "Type", car.TypeId);
-            return View("HomePage");
+            return View(car);
         }
 
         // GET: Cars/Edit/5

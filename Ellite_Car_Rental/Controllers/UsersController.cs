@@ -100,7 +100,7 @@ namespace Ellite_Car_Rental.Controllers
 
                 
             
-            return this.RedirectToAction("redirecthome","Cars");
+            return this.RedirectToAction("HomePage","Cars");
            // return View(user);
         }
         public ActionResult SignIn()
