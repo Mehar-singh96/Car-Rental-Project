@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group" id="card-number-field">
                         <label for="cardNumber">Card Number</label>
-                        <input type="text" class="form-control" id="card_number" maxlength="16">
+                        <input type="text" class="form-control" id="card_number">
                     </div>
                     <div class="form-group" id="expiration-date">
                         <label>Expiration Date</label>
@@ -136,10 +136,11 @@
         $("#card_number").keyup(function () {
             ccValidate($(this).val());
         });
-
+        
         document.getElementById('card_number').oninput = function() {
             this.value = cc_format(this.value)
         }
+        
         $("#card_number").keypress(function (e) {
             if ((e.which < 48 || e.which > 57) && (e.which !== 8) && (e.which !== 0)) {
                 return false;
@@ -150,6 +151,7 @@
 
     
     function cc_format(value) {
+        //alert("came here");
       var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
       var matches = v.match(/\d{4,16}/g);
       var match = matches && matches[0] || ''
